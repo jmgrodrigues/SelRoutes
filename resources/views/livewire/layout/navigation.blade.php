@@ -25,7 +25,7 @@ new class extends Component
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}" wire:navigate>
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                        <x-application-logo2 class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                     </a>
                 </div>
 
@@ -39,8 +39,8 @@ new class extends Component
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
-                <x-dropdown align="right" width="48">
-                    <x-slot name="trigger">
+                <x-dropdown  width="48">
+                    <x-slot name="trigger" primary>
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
                             <div x-data="{ name: '{{ auth()->user()->name }}' }" x-text="name" x-on:profile-updated.window="name = $event.detail.name"></div>
 
@@ -51,19 +51,17 @@ new class extends Component
                             </div>
                         </button>
                     </x-slot>
-
-                    <x-slot name="content">
-                        <x-dropdown-link :href="route('profile')" wire:navigate>
+                    
+                        <x-dropdown.item :href="route('profile')" wire:navigate >
                             {{ __('Profile') }}
-                        </x-dropdown-link>
+                        </x-dropdown.item>
 
                         <!-- Authentication -->
-                        <button wire:click="logout" class="w-full text-start">
-                            <x-dropdown-link>
+                        <button wire:click="logout" class="w-full text-start" >
+                            <x-dropdown.item>
                                 {{ __('Log Out') }}
-                            </x-dropdown-link>
+                            </x-dropdown.item>
                         </button>
-                    </x-slot>
                 </x-dropdown>
             </div>
 
